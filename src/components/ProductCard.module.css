@@ -1,0 +1,145 @@
+/* src/components/ProductCard.module.css */
+.card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s;
+}
+.card:hover { transform: translateY(-4px); }
+
+.imageWrap {
+  position: relative;
+  aspect-ratio: 3/4;
+  background: var(--cream-dark);
+  border-radius: var(--r-lg);
+  margin-bottom: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.imagePlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-light);
+  gap: 6px;
+}
+.emoji { font-size: 56px; line-height: 1; }
+.imagePlaceholder small {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* When you have real product images, use this instead of imagePlaceholder: */
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.card:hover .image { transform: scale(1.05); }
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(250, 248, 244, 0.92);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  font-weight: 700;
+  color: var(--teal);
+  border-radius: var(--r-pill);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.3s;
+}
+.card:hover .overlay { opacity: 1; transform: translateY(0); }
+
+.overlayBtn {
+  flex: 1;
+  background: var(--white);
+  border: none;
+  padding: 10px 12px;
+  border-radius: var(--r);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.15s;
+  color: var(--text);
+}
+.overlayBtn:hover { background: var(--teal); color: white; }
+
+.overlayIconBtn {
+  width: 38px;
+  height: 38px;
+  background: var(--white);
+  border: none;
+  border-radius: var(--r);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: all 0.15s;
+}
+.overlayIconBtn:hover { background: var(--gold-pale); color: var(--gold); }
+
+.info { padding: 0 2px; }
+.halalBadge {
+  background: var(--teal-light);
+  color: var(--teal);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--r-pill);
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.name {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 4px;
+  line-height: 1.3;
+  transition: color 0.2s;
+}
+.card:hover .name { color: var(--gold); }
+.vendor { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+.stars { font-size: 12px; color: var(--gold); margin-bottom: 6px; letter-spacing: 1px; }
+.ratingNum { font-size: 12px; font-weight: 700; color: var(--text); margin-left: 4px; font-family: var(--font-sans); }
+.reviewCount { font-size: 11px; color: var(--text-light); margin-left: 2px; font-family: var(--font-sans); }
+.priceRow { display: flex; align-items: center; justify-content: space-between; }
+.price { font-size: 16px; font-weight: 700; color: var(--gold); font-family: var(--font-sans); }
+.oldPrice { font-size: 12px; color: var(--text-light); text-decoration: line-through; margin-left: 6px; font-family: var(--font-sans); }
+.discount {
+  background: var(--gold-pale);
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-sans);
+}
