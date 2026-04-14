@@ -38,6 +38,7 @@ import AdminModeration from './pages/admin/Moderation';
 import AdminDisputes from './pages/admin/Disputes';
 import AdminCampaigns from './pages/admin/Campaigns';
 
+import ProtectedRoute from './components/ProtectedRoute';
 import { CartProvider } from './contexts/CartContext';
 
 function ScrollToTop() {
@@ -51,55 +52,55 @@ function App() {
     <CartProvider>
       <BrowserRouter>
         <ScrollToTop />
-      <Routes>
-        
-        {/* Customer Portal */}
-        <Route path="/" element={<CustomerLayout />}>
-          <Route index element={<Home />} />
-          <Route path="category/:slug" element={<ProductListing />} />
-          <Route path="product/:id" element={<ProductDetail />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="checkout" element={<Checkout />} />
-          <Route path="wishlist" element={<Wishlist />} />
-          <Route path="deals" element={<Deals />} />
-          {/* Info Pages */}
-          <Route path="support" element={<InfoPage />} />
-          <Route path="faq" element={<InfoPage />} />
-          <Route path="returns" element={<InfoPage />} />
-          <Route path="shipping" element={<InfoPage />} />
-          <Route path="ethics" element={<InfoPage />} />
-          <Route path="vendor-terms" element={<InfoPage />} />
-        </Route>
+        <Routes>
 
-        {/* Auth Portal */}
-        <Route path="/auth" element={<AuthLayout />}>
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<Login />} />
-        </Route>
+          {/* Customer Portal */}
+          <Route path="/" element={<CustomerLayout />}>
+            <Route index element={<Home />} />
+            <Route path="category/:slug" element={<ProductListing />} />
+            <Route path="product/:id" element={<ProductDetail />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="checkout" element={<Checkout />} />
+            <Route path="wishlist" element={<Wishlist />} />
+            <Route path="deals" element={<Deals />} />
+            {/* Info Pages */}
+            <Route path="support" element={<InfoPage />} />
+            <Route path="faq" element={<InfoPage />} />
+            <Route path="returns" element={<InfoPage />} />
+            <Route path="shipping" element={<InfoPage />} />
+            <Route path="ethics" element={<InfoPage />} />
+            <Route path="vendor-terms" element={<InfoPage />} />
+          </Route>
 
-        {/* Vendor Portal */}
-        <Route path="/vendor" element={<VendorLayout />}>
-          <Route index element={<Navigate to="/vendor/dashboard" replace />} />
-          <Route path="dashboard" element={<VendorDashboard />} />
-          <Route path="products" element={<VendorProducts />} />
-          <Route path="orders" element={<VendorOrders />} />
-          <Route path="earnings" element={<VendorEarnings />} />
-          <Route path="messages" element={<VendorMessages />} />
-          <Route path="settings" element={<VendorSettings />} />
-        </Route>
+          {/* Auth Portal */}
+          <Route path="/auth" element={<AuthLayout />}>
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Login />} />
+          </Route>
 
-        {/* Admin Portal */}
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Navigate to="/admin/dashboard" replace />} />
-          <Route path="dashboard" element={<AdminDashboard />} />
-          <Route path="vendors" element={<AdminVendors />} />
-          <Route path="moderation" element={<AdminModeration />} />
-          <Route path="disputes" element={<AdminDisputes />} />
-          <Route path="campaigns" element={<AdminCampaigns />} />
-        </Route>
+          {/* Vendor Portal */}
+          <Route path="/vendor" element={<ProtectedRoute role="vendor"><VendorLayout /></ProtectedRoute>}>
+            <Route index element={<Navigate to="/vendor/dashboard" replace />} />
+            <Route path="dashboard" element={<VendorDashboard />} />
+            <Route path="products" element={<VendorProducts />} />
+            <Route path="orders" element={<VendorOrders />} />
+            <Route path="earnings" element={<VendorEarnings />} />
+            <Route path="messages" element={<VendorMessages />} />
+            <Route path="settings" element={<VendorSettings />} />
+          </Route>
 
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+          {/* Admin Portal */}
+          <Route path="/admin" element={<ProtectedRoute role="admin"><AdminLayout /></ProtectedRoute>}>
+            <Route index element={<Navigate to="/admin/dashboard" replace />} />
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="vendors" element={<AdminVendors />} />
+            <Route path="moderation" element={<AdminModeration />} />
+            <Route path="disputes" element={<AdminDisputes />} />
+            <Route path="campaigns" element={<AdminCampaigns />} />
+          </Route>
+
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </BrowserRouter>
     </CartProvider>
   );
